@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog Produk Terbaru | TOKOELOK</title>
+  <meta name="description" content="Jelajahi katalog produk TOKOELOK berdasarkan nama, kategori, dan brand.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#b21f2d">
+  <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TOKOELOK">
+  <meta property="og:title" content="Katalog Produk Terbaru | TOKOELOK">
+  <meta property="og:description" content="Jelajahi katalog produk TOKOELOK berdasarkan nama, kategori, dan brand.">
+  <meta property="og:image" content="/assets/images/og-tokoelok.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+<div class="announcement">TOKOELOK · Katalog produk pilihan dan penawaran terbaru</div>
+<header class="header">
+  <div class="container header-main">
+    <a class="logo" href="/">TOKOELOK</a>
+    <form class="searchbar" action="/katalog/" method="get" role="search">
+      <label class="sr-only" for="header-search">Cari produk</label>
+      <input id="header-search" name="q" type="search" placeholder="Cari produk, kategori, atau brand...">
+      <button type="submit">Cari</button>
+    </form>
+    <div class="header-actions">
+      <a class="header-link" href="/katalog/">Katalog</a>
+      <a class="header-link" data-wa-general href="#">WhatsApp</a>
+    </div>
+    <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Buka menu">☰</button>
+  </div>
+  <nav class="nav">
+    <div class="container nav-inner" data-mobile-nav>
+      <a href="/">Beranda</a>
+      <a href="/katalog/">Semua Produk</a>
+      <a href="/katalog/?category=Smartphone">Smartphone</a>
+      <a href="/katalog/?category=Audio">Audio</a>
+      <a href="/katalog/?category=Aksesoris">Aksesoris</a>
+    </div>
+  </nav>
+</header>
+
+<main class="section section-soft">
+  <div class="container">
+    <p class="eyebrow">TOKOELOK</p>
+    <h1>Katalog Produk</h1>
+    <p>Cari produk yang Anda butuhkan menggunakan pencarian atau filter kategori.</p>
+
+    <div class="filters">
+      <input data-search type="search" placeholder="Cari produk, kategori, atau brand..." aria-label="Cari produk">
+      <select data-category aria-label="Pilih kategori"></select>
+    </div>
+    <div class="result-count" data-result-count></div>
+    <div class="product-grid" data-product-grid></div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>TOKOELOK</h3>
+        <p>Katalog produk pilihan yang sederhana, cepat, dan mudah diakses.</p>
+      </div>
+      <div>
+        <h3>Navigasi</h3>
+        <p><a href="/">Beranda</a></p>
+        <p><a href="/katalog/">Katalog</a></p>
+      </div>
+      <div>
+        <h3>Bantuan</h3>
+        <p><a data-wa-general href="#">WhatsApp</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span data-year></span> TOKOELOK. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="/assets/js/products.js"></script>
+<script src="/assets/js/app.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const q = params.get("q");
+  if (q) document.querySelector("[data-search]").value = q;
+</script>
+<script src="/assets/js/catalog.js"></script>
+<script>
+  const categoryParam = new URLSearchParams(location.search).get("category");
+  const select = document.querySelector("[data-category]");
+  if (categoryParam && select) {
+    setTimeout(() => {
+      select.value = categoryParam;
+      select.dispatchEvent(new Event("change"));
+    }, 0);
+  }
+</script>
+</body>
+</html>
