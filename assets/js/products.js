@@ -1,92 +1,305 @@
+```javascript
+/*
+=========================================================
+ELOKTOTO - DATA CONFIG
+=========================================================
+
+CATATAN:
+
+Nama internal TOKOELOK_CONFIG tetap dipertahankan
+agar app.js, catalog.js, dan product.js tetap terhubung.
+
+=========================================================
+*/
+
 window.TOKOELOK_CONFIG = {
-  storeName: "TOKOELOK",
-  whatsapp: "6200000000000",
-  currency: "IDR"
+
+  storeName: "ELOKTOTO",
+
+  targetLink:
+    "https://fourdi.link/ELOK",
+
+  currency:
+    "IDR"
+
 };
 
+
+
+/*
+=========================================================
+ELOKTOTO - DATA PERMAINAN
+=========================================================
+
+Kategori WAJIB menggunakan salah satu:
+
+BUKTI KEMENANGAN
+PROMO
+RTP
+GAME GACOR
+
+=========================================================
+*/
+
 window.TOKOELOK_PRODUCTS = [
+
+
+  /*
+  =======================================================
+  GAME GACOR
+  =======================================================
+  */
+
   {
     id: 1,
-    slug: "smartphone-alpha",
-    name: "Smartphone Alpha 8GB/256GB",
-    category: "Smartphone",
-    brand: "Alpha",
-    price: 3299000,
-    oldPrice: 3599000,
-    stock: 12,
-    image: "/assets/images/products/smartphone-alpha.webp",
-    shortDescription: "Smartphone modern dengan penyimpanan besar untuk penggunaan harian.",
-    description: "Smartphone Alpha hadir sebagai contoh produk TOKOELOK. Ganti nama, deskripsi, harga, foto, dan spesifikasinya dengan produk asli Anda sebelum dipublikasikan.",
-    specs: ["RAM 8GB", "Storage 256GB", "Garansi toko", "Stok tersedia"]
+
+    slug:
+      "game-pilihan-1",
+
+    name:
+      "Game Pilihan ELOKTOTO",
+
+    category:
+      "GAME GACOR",
+
+    provider:
+      "ELOKTOTO",
+
+    brand:
+      "ELOKTOTO",
+
+    image:
+      "/assets/images/products/smartphone-alpha.webp",
+
+    shortDescription:
+      "Permainan pilihan ELOKTOTO yang dapat Anda lihat melalui katalog permainan terbaru.",
+
+    description:
+      "Jelajahi informasi Game Pilihan ELOKTOTO, lihat kategori permainan, informasi terbaru, dan kunjungi ELOKTOTO melalui tombol yang tersedia.",
+
+    info: [
+      "Kategori: GAME GACOR",
+      "Provider: ELOKTOTO",
+      "Permainan pilihan",
+      "Informasi terbaru"
+    ]
   },
+
+
+
+  /*
+  =======================================================
+  PROMO
+  =======================================================
+  */
+
   {
     id: 2,
-    slug: "earbuds-air",
-    name: "Earbuds Air Wireless",
-    category: "Audio",
-    brand: "Elok Audio",
-    price: 349000,
-    oldPrice: 429000,
-    stock: 24,
-    image: "/assets/images/products/earbuds-air.webp",
-    shortDescription: "Earbuds wireless ringkas untuk musik, panggilan, dan aktivitas harian.",
-    description: "Contoh produk audio untuk katalog TOKOELOK. Semua detail dapat Anda ubah langsung dari file products.js.",
-    specs: ["Bluetooth", "Charging case", "Ringan", "Stok tersedia"]
+
+    slug:
+      "promo-eloktoto",
+
+    name:
+      "Promo Pilihan ELOKTOTO",
+
+    category:
+      "PROMO",
+
+    provider:
+      "ELOKTOTO",
+
+    brand:
+      "ELOKTOTO",
+
+    image:
+      "/assets/images/products/earbuds-air.webp",
+
+    shortDescription:
+      "Lihat informasi promo pilihan dan penawaran terbaru yang tersedia di ELOKTOTO.",
+
+    description:
+      "Halaman ini menampilkan informasi promo ELOKTOTO. Anda dapat mengganti teks ini dengan informasi promo asli yang ingin ditampilkan.",
+
+    info: [
+      "Kategori: PROMO",
+      "Promo pilihan",
+      "Informasi terbaru",
+      "Kunjungi ELOKTOTO untuk informasi lengkap"
+    ]
   },
+
+
+
+  /*
+  =======================================================
+  RTP
+  =======================================================
+  */
+
   {
     id: 3,
-    slug: "smartwatch-fit",
-    name: "Smartwatch Fit Series",
-    category: "Wearable",
-    brand: "Elok Wear",
-    price: 699000,
-    oldPrice: 799000,
-    stock: 8,
-    image: "/assets/images/products/smartwatch-fit.webp",
-    shortDescription: "Jam pintar dengan desain minimal untuk aktivitas harian.",
-    description: "Contoh smartwatch TOKOELOK untuk memperlihatkan struktur halaman produk dan katalog.",
-    specs: ["Layar sentuh", "Notifikasi", "Mode olahraga", "Stok terbatas"]
+
+    slug:
+      "rtp-pilihan",
+
+    name:
+      "RTP Pilihan Hari Ini",
+
+    category:
+      "RTP",
+
+    provider:
+      "ELOKTOTO",
+
+    brand:
+      "ELOKTOTO",
+
+    image:
+      "/assets/images/products/smartwatch-fit.webp",
+
+    shortDescription:
+      "Informasi RTP pilihan yang ditampilkan dalam katalog ELOKTOTO.",
+
+    description:
+      "Gunakan halaman ini untuk menampilkan informasi RTP dan keterangan permainan yang ingin Anda publikasikan di ELOKTOTO.",
+
+    info: [
+      "Kategori: RTP",
+      "Informasi RTP",
+      "Update terbaru",
+      "ELOKTOTO"
+    ]
   },
+
+
+
+  /*
+  =======================================================
+  BUKTI KEMENANGAN
+  =======================================================
+  */
+
   {
     id: 4,
-    slug: "charger-fast",
-    name: "Fast Charger 45W",
-    category: "Aksesoris",
-    brand: "Elok Power",
-    price: 219000,
-    oldPrice: 259000,
-    stock: 35,
-    image: "/assets/images/products/charger-fast.webp",
-    shortDescription: "Adaptor pengisian cepat untuk perangkat yang kompatibel.",
-    description: "Contoh produk aksesoris TOKOELOK. Pastikan spesifikasi produk asli sesuai sebelum Anda launch.",
-    specs: ["45W", "USB-C", "Ringkas", "Stok tersedia"]
+
+    slug:
+      "bukti-kemenangan-1",
+
+    name:
+      "Bukti Kemenangan ELOKTOTO",
+
+    category:
+      "BUKTI KEMENANGAN",
+
+    provider:
+      "ELOKTOTO",
+
+    brand:
+      "ELOKTOTO",
+
+    image:
+      "/assets/images/products/charger-fast.webp",
+
+    shortDescription:
+      "Lihat informasi dan dokumentasi kemenangan terbaru yang ditampilkan di ELOKTOTO.",
+
+    description:
+      "Halaman Bukti Kemenangan digunakan untuk menampilkan informasi atau dokumentasi yang ingin Anda tampilkan kepada pengunjung.",
+
+    info: [
+      "Kategori: BUKTI KEMENANGAN",
+      "Informasi terbaru",
+      "Dokumentasi ELOKTOTO",
+      "Lihat detail permainan"
+    ]
   },
+
+
+
+  /*
+  =======================================================
+  GAME GACOR 2
+  =======================================================
+  */
+
   {
     id: 5,
-    slug: "speaker-mini",
-    name: "Speaker Mini Portable",
-    category: "Audio",
-    brand: "Elok Audio",
-    price: 279000,
-    oldPrice: 319000,
-    stock: 16,
-    image: "/assets/images/products/speaker-mini.webp",
-    shortDescription: "Speaker portable ringkas untuk penggunaan di rumah maupun perjalanan.",
-    description: "Contoh speaker portable yang dapat diganti dengan produk asli dari toko Anda.",
-    specs: ["Portable", "Bluetooth", "Baterai isi ulang", "Stok tersedia"]
+
+    slug:
+      "game-pilihan-2",
+
+    name:
+      "Game Favorit ELOKTOTO",
+
+    category:
+      "GAME GACOR",
+
+    provider:
+      "ELOKTOTO",
+
+    brand:
+      "ELOKTOTO",
+
+    image:
+      "/assets/images/products/speaker-mini.webp",
+
+    shortDescription:
+      "Pilihan permainan favorit yang tersedia dalam katalog ELOKTOTO.",
+
+    description:
+      "Lihat detail permainan favorit ELOKTOTO dan gunakan tombol kunjungan untuk mendapatkan informasi selengkapnya.",
+
+    info: [
+      "Kategori: GAME GACOR",
+      "Permainan favorit",
+      "Pilihan ELOKTOTO",
+      "Informasi terbaru"
+    ]
   },
+
+
+
+  /*
+  =======================================================
+  PROMO 2
+  =======================================================
+  */
+
   {
     id: 6,
-    slug: "cable-pro",
-    name: "Cable Pro USB-C",
-    category: "Aksesoris",
-    brand: "Elok Power",
-    price: 89000,
-    oldPrice: 109000,
-    stock: 60,
-    image: "/assets/images/products/cable-pro.webp",
-    shortDescription: "Kabel USB-C praktis untuk kebutuhan pengisian dan sinkronisasi.",
-    description: "Contoh produk sederhana untuk mengisi katalog awal TOKOELOK.",
-    specs: ["USB-C", "Panjang 1 meter", "Data & charging", "Stok tersedia"]
+
+    slug:
+      "promo-terbaru",
+
+    name:
+      "Promo Terbaru ELOKTOTO",
+
+    category:
+      "PROMO",
+
+    provider:
+      "ELOKTOTO",
+
+    brand:
+      "ELOKTOTO",
+
+    image:
+      "/assets/images/products/cable-pro.webp",
+
+    shortDescription:
+      "Temukan informasi promo terbaru dan penawaran pilihan dari ELOKTOTO.",
+
+    description:
+      "Promo Terbaru ELOKTOTO dapat digunakan untuk menampilkan penawaran, informasi event, atau pengumuman terbaru.",
+
+    info: [
+      "Kategori: PROMO",
+      "Promo terbaru",
+      "Informasi pilihan",
+      "ELOKTOTO"
+    ]
   }
+
+
 ];
+```
