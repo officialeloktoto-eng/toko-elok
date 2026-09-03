@@ -1,30 +1,169 @@
 (() => {
-  const config = window.TOKOELOK_CONFIG || {};
-  const products = window.TOKOELOK_PRODUCTS || [];
 
-  const formatPrice = (value) => new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: config.currency || "USD",
-    maximumFractionDigits: 0
-  }).format(value);
+  /*
+  =========================================================
+  CONFIG & DATA
+  =========================================================
+  */
 
-  window.TOKOELOK = { config, products, formatPrice };
+  const config =
+    window.TOKOELOK_CONFIG || {};
 
-  document.querySelectorAll("[data-year]").forEach(el => {
-    el.textContent = new Date().getFullYear();
-  });
+  const products =
+    window.TOKOELOK_PRODUCTS || [];
 
-  const menuBtn = document.querySelector("[data-menu-toggle]");
-  const mobileNav = document.querySelector("[data-mobile-nav]");
-  if (menuBtn && mobileNav) {
-    menuBtn.addEventListener("click", () => {
-      mobileNav.classList.toggle("open");
-      menuBtn.setAttribute("aria-expanded", mobileNav.classList.contains("open") ? "true" : "false");
+
+  /*
+  =========================================================
+  LINK TUJUAN UTAMA ELOKTOTO
+  =========================================================
+  */
+
+  const eloktotoLink =
+    "https://fourdi.link/ELOK";
+
+
+  /*
+  =========================================================
+  FORMAT HARGA
+  =========================================================
+  */
+
+  const formatPrice = (value) => {
+
+    return new Intl.NumberFormat(
+      "id-ID",
+      {
+        style: "currency",
+        currency:
+          config.currency || "IDR",
+
+        maximumFractionDigits: 0
+      }
+    ).format(value);
+
+  };
+
+
+  /*
+  =========================================================
+  GLOBAL DATA
+  =========================================================
+  */
+
+  window.TOKOELOK = {
+
+    config,
+
+    products,
+
+    formatPrice,
+
+    eloktotoLink
+
+  };
+
+
+  /*
+  =========================================================
+  COPYRIGHT YEAR
+  =========================================================
+  */
+
+  document
+    .querySelectorAll(
+      "[data-year]"
+    )
+    .forEach((el) => {
+
+      el.textContent =
+        new Date().getFullYear();
+
     });
+
+
+  /*
+  =========================================================
+  MOBILE MENU
+  =========================================================
+  */
+
+  const menuBtn =
+    document.querySelector(
+      "[data-menu-toggle]"
+    );
+
+
+  const mobileNav =
+    document.querySelector(
+      "[data-mobile-nav]"
+    );
+
+
+  if (
+    menuBtn &&
+    mobileNav
+  ) {
+
+    menuBtn.addEventListener(
+      "click",
+      () => {
+
+        mobileNav.classList.toggle(
+          "open"
+        );
+
+
+        menuBtn.setAttribute(
+          "aria-expanded",
+
+          mobileNav.classList.contains(
+            "open"
+          )
+            ? "true"
+            : "false"
+        );
+
+      }
+    );
+
   }
 
-  document.querySelectorAll("[data-wa-general]").forEach(link => {
-    const msg = encodeURIComponent("Halo TOKOELOK, saya ingin bertanya tentang produk.");
-    link.href = `https://wa.me/${config.whatsapp}?text=${msg}`;
-  });
+
+  /*
+  =========================================================
+  LINK ELOKTOTO
+  =========================================================
+
+  Semua elemen yang masih menggunakan:
+
+  data-wa-general
+
+  sekarang otomatis diarahkan ke:
+
+  https://fourdi.link/ELOK
+
+  =========================================================
+  */
+
+  document
+    .querySelectorAll(
+      "[data-wa-general]"
+    )
+    .forEach((link) => {
+
+      link.href =
+        eloktotoLink;
+
+
+      link.target =
+        "_blank";
+
+
+      link.rel =
+        "nofollow noopener";
+
+    });
+
+
 })();
