@@ -4,7 +4,7 @@
 
   const formatPrice = (value) => new Intl.NumberFormat("id-ID", {
     style: "currency",
-    currency: config.currency || "IDR",
+    currency: config.currency || "USD",
     maximumFractionDigits: 0
   }).format(value);
 
