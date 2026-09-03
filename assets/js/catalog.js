@@ -1,51 +1,626 @@
+```javascript
 (() => {
-  const { products, formatPrice } = window.TOKOELOK;
-  const grid = document.querySelector("[data-product-grid]");
-  const search = document.querySelector("[data-search]");
-  const category = document.querySelector("[data-category]");
-  const resultCount = document.querySelector("[data-result-count]");
-  if (!grid) return;
 
-  const categories = ["Semua", ...new Set(products.map(p => p.category))];
-  if (category) {
-    category.innerHTML = categories.map(c => `<option value="${c}">${c}</option>`).join("");
+  /*
+  =========================================================
+  AMBIL DATA GLOBAL
+  =========================================================
+  */
+
+  const tokoData = window.TOKOELOK || {};
+
+  const products =
+    Array.isArray(tokoData.products)
+      ? tokoData.products
+      : [];
+
+  const formatPrice =
+    typeof tokoData.formatPrice === "function"
+      ? tokoData.formatPrice
+      : (value) => value;
+
+
+  /*
+  =========================================================
+  ELEMENT HTML
+  =========================================================
+  */
+
+  const grid =
+    document.querySelector(
+      "[data-product-grid]"
+    );
+
+  const search =
+    document.querySelector(
+      "[data-search]"
+    );
+
+  const category =
+    document.querySelector(
+      "[data-category]"
+    );
+
+  const resultCount =
+    document.querySelector(
+      "[data-result-count]"
+    );
+
+
+  /*
+  =========================================================
+  JIKA TIDAK ADA PRODUCT GRID
+  =========================================================
+  */
+
+  if (!grid) {
+    return;
   }
+
+
+  /*
+  =========================================================
+  PARAMETER URL
+  =========================================================
+
+  Contoh:
+
+  /katalog/?category=PROMO
+
+  /katalog/?category=GAME%20GACOR
+
+  /katalog/?q=pragmatic
+
+  =========================================================
+  */
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const urlSearch =
+    params.get("q") || "";
+
+  const urlCategory =
+    params.get("category") || "";
+
+
+  /*
+  =========================================================
+  ISI SEARCH DARI URL
+  =========================================================
+  */
+
+  if (
+    search &&
+    urlSearch
+  ) {
+
+    search.value =
+      urlSearch;
+
+  }
+
+
+  /*
+  =========================================================
+  KATEGORI UTAMA ELOKTOTO
+  =========================================================
+  */
+
+  const mainCategories = [
+
+    "BUKTI KEMENANGAN",
+
+    "PROMO",
+
+    "RTP",
+
+    "GAME GACOR"
+
+  ];
+
+
+  /*
+  =========================================================
+  AMBIL KATEGORI TAMBAHAN DARI PRODUCTS.JS
+  =========================================================
+  */
+
+  const productCategories =
+    products
+      .map((p) => p.category)
+      .filter(Boolean);
+
+
+  /*
+  =========================================================
+  GABUNGKAN KATEGORI
+  =========================================================
+  */
+
+  const categories = [
+
+    "Semua",
+
+    ...new Set([
+      ...mainCategories,
+      ...productCategories
+    ])
+
+  ];
+
+
+  /*
+  =========================================================
+  BUAT SELECT CATEGORY
+  =========================================================
+  */
+
+  if (category) {
+
+    category.innerHTML =
+      categories
+        .map((c) => {
+
+          return `
+            <option value="${escapeHtml(c)}">
+              ${escapeHtml(c)}
+            </option>
+          `;
+
+        })
+        .join("");
+
+
+    /*
+    =======================================================
+    PILIH CATEGORY DARI URL
+    =======================================================
+    */
+
+    if (
+      urlCategory &&
+      categories.includes(
+        urlCategory
+      )
+    ) {
+
+      category.value =
+        urlCategory;
+
+    }
+
+  }
+
+
+  /*
+  =========================================================
+  ESCAPE HTML
+  =========================================================
+
+  Mengurangi risiko teks produk merusak HTML.
+
+  =========================================================
+  */
+
+  function escapeHtml(value) {
+
+    return String(
+      value ?? ""
+    )
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+      .replace(
+        /</g,
+        "&lt;"
+      )
+      .replace(
+        />/g,
+        "&gt;"
+      )
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
+  }
+
+
+  /*
+  =========================================================
+  URL DETAIL PERMAINAN
+  =========================================================
+  */
+
+  function productUrl(p) {
+
+    return (
+      "/produk/?slug=" +
+      encodeURIComponent(
+        p.slug || ""
+      )
+    );
+
+  }
+
+
+  /*
+  =========================================================
+  CARD PERMAINAN
+  =========================================================
+  */
 
   function card(p) {
-    const discount = p.oldPrice > p.price ? Math.round((1 - p.price / p.oldPrice) * 100) : 0;
+
+    const name =
+      escapeHtml(
+        p.name ||
+        "Permainan ELOKTOTO"
+      );
+
+    const categoryName =
+      escapeHtml(
+        p.category ||
+        "GAME GACOR"
+      );
+
+    const brand =
+      escapeHtml(
+        p.brand ||
+        p.provider ||
+        "ELOKTOTO"
+      );
+
+    const image =
+      escapeHtml(
+        p.image ||
+        "/assets/images/og-tokoelok.png"
+      );
+
+    const description =
+      escapeHtml(
+        p.shortDescription ||
+        p.description ||
+        "Permainan pilihan ELOKTOTO."
+      );
+
+    const url =
+      productUrl(p);
+
+
     return `
+
       <article class="product-card">
-        <a class="product-image-link" href="/produk/?slug=${encodeURIComponent(p.slug)}" aria-label="Lihat ${p.name}">
-          <img class="product-image" src="${p.image}" alt="${p.name}" loading="lazy" width="900" height="900">
-          ${discount ? `<span class="discount-badge">-${discount}%</span>` : ""}
+
+
+        <!-- IMAGE -->
+
+        <a
+          class="product-image-link"
+          href="${url}"
+          aria-label="Lihat ${name}"
+        >
+
+          <img
+            class="product-image"
+            src="${image}"
+            alt="${name}"
+            loading="lazy"
+            width="900"
+            height="900"
+          >
+
+          <span class="discount-badge">
+            ${categoryName}
+          </span>
+
         </a>
+
+
+
+        <!-- CONTENT -->
+
         <div class="product-content">
-          <div class="product-meta">${p.category} · ${p.brand}</div>
-          <h3><a href="/produk/?slug=${encodeURIComponent(p.slug)}">${p.name}</a></h3>
-          <div class="price-row">
-            <strong>${formatPrice(p.price)}</strong>
-            ${p.oldPrice ? `<del>${formatPrice(p.oldPrice)}</del>` : ""}
+
+
+          <!-- CATEGORY / PROVIDER -->
+
+          <div class="product-meta">
+
+            ${categoryName}
+
+            ·
+
+            ${brand}
+
           </div>
-          <p class="stock">${p.stock > 0 ? `Stok ${p.stock}` : "Stok habis"}</p>
-          <a class="product-button" href="/produk/?slug=${encodeURIComponent(p.slug)}">Lihat Produk</a>
+
+
+
+          <!-- TITLE -->
+
+          <h3>
+
+            <a href="${url}">
+              ${name}
+            </a>
+
+          </h3>
+
+
+
+          <!-- DESCRIPTION -->
+
+          <p class="product-description">
+
+            ${description}
+
+          </p>
+
+
+
+          <!-- DETAIL BUTTON -->
+
+          <a
+            class="product-button"
+            href="${url}"
+          >
+            LIHAT DETAIL
+          </a>
+
+
         </div>
+
+
       </article>
+
     `;
+
   }
+
+
+  /*
+  =========================================================
+  FILTER & RENDER
+  =========================================================
+  */
 
   function render() {
-    const q = (search?.value || "").trim().toLowerCase();
-    const c = category?.value || "Semua";
-    const filtered = products.filter(p => {
-      const hay = `${p.name} ${p.brand} ${p.category}`.toLowerCase();
-      return (!q || hay.includes(q)) && (c === "Semua" || p.category === c);
-    });
-    grid.innerHTML = filtered.map(card).join("");
-    if (resultCount) resultCount.textContent = `${filtered.length} produk`;
-    if (!filtered.length) grid.innerHTML = `<div class="empty">Produk tidak ditemukan.</div>`;
+
+
+    /*
+    =======================================================
+    SEARCH KEYWORD
+    =======================================================
+    */
+
+    const q = (
+
+      search?.value ||
+      urlSearch ||
+      ""
+
+    )
+      .trim()
+      .toLowerCase();
+
+
+    /*
+    =======================================================
+    CATEGORY AKTIF
+    =======================================================
+    */
+
+    const selectedCategory =
+
+      category?.value ||
+
+      urlCategory ||
+
+      "Semua";
+
+
+    /*
+    =======================================================
+    FILTER DATA
+    =======================================================
+    */
+
+    let filtered =
+      products.filter(
+        (p) => {
+
+          const name =
+            p.name || "";
+
+          const brand =
+            p.brand ||
+            p.provider ||
+            "";
+
+          const productCategory =
+            p.category || "";
+
+          const description =
+            p.shortDescription ||
+            p.description ||
+            "";
+
+
+          const searchText = `
+
+            ${name}
+
+            ${brand}
+
+            ${productCategory}
+
+            ${description}
+
+          `
+            .toLowerCase();
+
+
+          /*
+          SEARCH MATCH
+          */
+
+          const searchMatch =
+
+            !q ||
+
+            searchText.includes(q);
+
+
+          /*
+          CATEGORY MATCH
+          */
+
+          const categoryMatch =
+
+            selectedCategory ===
+              "Semua" ||
+
+            productCategory ===
+              selectedCategory;
+
+
+          return (
+
+            searchMatch &&
+            categoryMatch
+
+          );
+
+        }
+      );
+
+
+    /*
+    =======================================================
+    HOMEPAGE HANYA TAMPILKAN 8 PERMAINAN
+    =======================================================
+
+    Pada /katalog/ semua permainan tetap tampil.
+
+    =======================================================
+    */
+
+    const isCatalogPage =
+      window.location.pathname
+        .startsWith(
+          "/katalog"
+        );
+
+
+    if (!isCatalogPage) {
+
+      filtered =
+        filtered.slice(
+          0,
+          8
+        );
+
+    }
+
+
+    /*
+    =======================================================
+    TAMPILKAN CARD
+    =======================================================
+    */
+
+    grid.innerHTML =
+      filtered
+        .map(card)
+        .join("");
+
+
+    /*
+    =======================================================
+    JUMLAH HASIL
+    =======================================================
+    */
+
+    if (resultCount) {
+
+      resultCount.textContent =
+
+        `${filtered.length} permainan ditemukan`;
+
+    }
+
+
+    /*
+    =======================================================
+    JIKA KOSONG
+    =======================================================
+    */
+
+    if (
+      filtered.length === 0
+    ) {
+
+      grid.innerHTML = `
+
+        <div class="empty">
+
+          Permainan tidak ditemukan.
+
+          <br>
+
+          Silakan pilih kategori
+          atau gunakan kata pencarian lain.
+
+        </div>
+
+      `;
+
+    }
+
   }
 
-  search?.addEventListener("input", render);
-  category?.addEventListener("change", render);
+
+  /*
+  =========================================================
+  EVENT SEARCH
+  =========================================================
+  */
+
+  search?.addEventListener(
+    "input",
+    render
+  );
+
+
+  /*
+  =========================================================
+  EVENT CATEGORY
+  =========================================================
+  */
+
+  category?.addEventListener(
+    "change",
+    render
+  );
+
+
+  /*
+  =========================================================
+  RENDER PERTAMA
+  =========================================================
+  */
+
   render();
+
+
 })();
+```
