@@ -13,7 +13,7 @@
 
   <meta
     name="description"
-    content="Lihat detail permainan dan informasi pilihan terbaru di ELOKTOTO."
+    content="Lihat detail permainan, kategori, promo, RTP, dan informasi permainan pilihan terbaru di ELOKTOTO."
   >
 
   <meta
@@ -31,6 +31,7 @@
     href="/assets/images/favicon.png"
     type="image/png"
   >
+
 
   <!-- OPEN GRAPH -->
 
@@ -51,7 +52,7 @@
 
   <meta
     property="og:description"
-    content="Lihat detail permainan dan informasi pilihan terbaru di ELOKTOTO."
+    content="Lihat detail permainan, kategori, promo, RTP, dan informasi permainan pilihan terbaru di ELOKTOTO."
   >
 
   <meta
@@ -59,10 +60,14 @@
     content="/assets/images/og-tokoelok.png"
   >
 
+
+  <!-- TWITTER -->
+
   <meta
     name="twitter:card"
     content="summary_large_image"
   >
+
 
   <!-- CSS -->
 
@@ -83,7 +88,7 @@
 
 <div class="announcement">
 
-  ELOKTOTO · Tempat Permainan pilihan dan penawaran terbaru
+  ELOKTOTO · Tempat Permainan Pilihan dan Penawaran Terbaru
 
 </div>
 
@@ -104,6 +109,7 @@
     <a
       class="logo"
       href="/"
+      aria-label="ELOKTOTO Beranda"
     >
       ELOKTOTO
     </a>
@@ -143,10 +149,12 @@
 
 
 
-    <!-- HEADER BUTTON -->
+    <!-- HEADER ACTION -->
 
     <div class="header-actions">
 
+
+      <!-- BUKTI KEMENANGAN -->
 
       <a
         class="header-link"
@@ -155,6 +163,8 @@
         BUKTI KEMENANGAN
       </a>
 
+
+      <!-- DAFTAR -->
 
       <a
         class="header-link"
@@ -248,7 +258,7 @@
 
 
 <!-- ====================================================== -->
-<!-- DETAIL PRODUK / PERMAINAN -->
+<!-- DETAIL PERMAINAN -->
 <!-- ====================================================== -->
 
 <main class="detail-page">
@@ -265,7 +275,7 @@
 
 
 <!-- ====================================================== -->
-<!-- CTA -->
+<!-- CALL TO ACTION -->
 <!-- ====================================================== -->
 
 <section class="section container">
@@ -283,19 +293,20 @@
 
 
       <h2>
-        Kunjungi ELOKTOTO
+        Mainkan Permainan Pilihan Anda
       </h2>
 
 
       <p>
-        Jelajahi permainan pilihan, promo,
-        RTP, dan informasi terbaru ELOKTOTO.
+        Kunjungi ELOKTOTO untuk melihat permainan,
+        promo, RTP, dan informasi terbaru.
       </p>
 
 
     </div>
 
 
+    <!-- LINK LANGSUNG ELOKTOTO -->
 
     <a
       class="btn btn-primary"
@@ -339,8 +350,9 @@
 
 
         <p>
-          Permainan pilihan yang sederhana,
-          cepat, dan mudah diakses.
+          Permainan pilihan, promo,
+          RTP, dan informasi terbaru
+          yang mudah diakses.
         </p>
 
 
@@ -359,55 +371,45 @@
 
 
         <p>
-
           <a href="/">
             Beranda
           </a>
-
         </p>
 
 
         <p>
-
           <a
             href="/katalog/?category=BUKTI%20KEMENANGAN"
           >
             Bukti Kemenangan
           </a>
-
         </p>
 
 
         <p>
-
           <a
             href="/katalog/?category=PROMO"
           >
             Promo
           </a>
-
         </p>
 
 
         <p>
-
           <a
             href="/katalog/?category=RTP"
           >
             RTP
           </a>
-
         </p>
 
 
         <p>
-
           <a
             href="/katalog/?category=GAME%20GACOR"
           >
             Game Gacor
           </a>
-
         </p>
 
 
@@ -415,7 +417,7 @@
 
 
 
-      <!-- BUTTON -->
+      <!-- ELOKTOTO LINKS -->
 
       <div>
 
@@ -446,6 +448,19 @@
             rel="nofollow noopener"
           >
             Daftar ELOKTOTO
+          </a>
+
+        </p>
+
+
+        <p>
+
+          <a
+            href="https://fourdi.link/ELOK"
+            target="_blank"
+            rel="nofollow noopener"
+          >
+            Login ELOKTOTO
           </a>
 
         </p>
@@ -482,7 +497,7 @@
 <!-- ====================================================== -->
 
 
-<!-- DATA PRODUK / PERMAINAN -->
+<!-- DATA PERMAINAN -->
 
 <script src="/assets/js/products.js"></script>
 
@@ -492,9 +507,123 @@
 <script src="/assets/js/app.js"></script>
 
 
-<!-- DETAIL PRODUK -->
+<!-- DETAIL PERMAINAN -->
 
 <script src="/assets/js/product.js"></script>
+
+
+
+<!-- ====================================================== -->
+<!-- PENGAMAN LINK -->
+<!-- ====================================================== -->
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+    const tujuanELOK =
+      "https://fourdi.link/ELOK";
+
+
+    /*
+    ========================================================
+    GANTI LINK WHATSAPP LAMA
+    ========================================================
+    */
+
+    document
+      .querySelectorAll(
+        'a[href*="wa.me"]'
+      )
+      .forEach(function (link) {
+
+        link.href =
+          tujuanELOK;
+
+        link.target =
+          "_blank";
+
+        link.rel =
+          "nofollow noopener";
+
+      });
+
+
+
+    /*
+    ========================================================
+    GANTI DATA-WA-GENERAL LAMA
+    ========================================================
+    */
+
+    document
+      .querySelectorAll(
+        "a[data-wa-general]"
+      )
+      .forEach(function (link) {
+
+        link.href =
+          tujuanELOK;
+
+        link.target =
+          "_blank";
+
+        link.rel =
+          "nofollow noopener";
+
+        link.removeAttribute(
+          "data-wa-general"
+        );
+
+      });
+
+
+
+    /*
+    ========================================================
+    GANTI TOMBOL WHATSAPP YANG DIBUAT PRODUCT.JS
+    ========================================================
+    */
+
+    document
+      .querySelectorAll("a")
+      .forEach(function (link) {
+
+        const text =
+          link.textContent
+            .trim()
+            .toLowerCase();
+
+
+        if (
+          text.includes("whatsapp") ||
+          text.includes("pesan via whatsapp") ||
+          text.includes("tanya via whatsapp") ||
+          text.includes("hubungi whatsapp")
+        ) {
+
+          link.href =
+            tujuanELOK;
+
+          link.target =
+            "_blank";
+
+          link.rel =
+            "nofollow noopener";
+
+          link.textContent =
+            "KUNJUNGI ELOKTOTO";
+
+        }
+
+      });
+
+  }
+);
+
+</script>
 
 
 </body>
