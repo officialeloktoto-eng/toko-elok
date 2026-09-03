@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-# Setelah alamat pages.dev final tersedia, tambahkan:
-# Sitemap: https://ALAMAT-ANDA.pages.dev/sitemap.xml
