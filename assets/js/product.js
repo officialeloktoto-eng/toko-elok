@@ -32,7 +32,7 @@
   const name = esc(p.name);
   const cat = esc(p.category);
   const provider = esc(p.provider || "ELOKTOTO");
-  const image = esc(p.image || "/assets/images/og-eloktoto.png");
+  const image = esc(p.image || "/assets/images/og-eloktoto.webp");
   const short = esc(p.shortDescription || "");
   const description = esc(p.description || p.shortDescription || "");
   const info = Array.isArray(p.info) ? p.info : [];
