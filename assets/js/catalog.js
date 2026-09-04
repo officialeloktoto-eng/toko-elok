@@ -52,7 +52,7 @@
     const name = esc(p.name || "Permainan ELOKTOTO");
     const cat = esc(p.category || "GAME GACOR");
     const provider = esc(p.provider || "ELOKTOTO");
-    const img = esc(p.image || "/assets/images/og-eloktoto.png");
+    const img = esc(p.image || "/assets/images/og-eloktoto.webp");
     const desc = esc(p.shortDescription || "");
     const url = `/produk/?slug=${encodeURIComponent(p.slug || "")}`;
 
