@@ -1,99 +1,467 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Detail Permainan | ELOKTOTO</title>
-  <meta name="description" content="Lihat detail permainan dan informasi pilihan ELOKTOTO.">
-  <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta name="theme-color" content="#ff7a12">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  <link rel="icon" href="/assets/images/logoelok.png" type="image/png">
-  <link rel="stylesheet" href="/assets/css/style.css">
 
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="ELOKTOTO">
-  <meta property="og:title" content="Detail Permainan | ELOKTOTO">
-  <meta property="og:description" content="Detail permainan ELOKTOTO dalam tampilan modern yang keren">
-  <meta property="og:image" content="https://toko-elok.pages.dev/assets/images/eloktoto.png">
+  <title>
+    Detail Permainan | ELOKTOTO
+  </title>
+
+
+  <meta
+    name="description"
+    content="Lihat detail permainan dan informasi pilihan ELOKTOTO."
+  >
+
+
+  <meta
+    name="robots"
+    content="index, follow, max-image-preview:large"
+  >
+
+
+  <meta
+    name="theme-color"
+    content="#ff7a12"
+  >
+
+
+
+  <!-- ==================================================
+       FAVICON WEBP
+  =================================================== -->
+
+  <link
+    rel="icon"
+    href="/assets/images/logoelok.webp"
+    type="image/webp"
+  >
+
+
+
+  <!-- ==================================================
+       CSS
+  =================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/style.css"
+  >
+
+
+
+  <!-- ==================================================
+       OPEN GRAPH
+  =================================================== -->
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+
+  <meta
+    property="og:site_name"
+    content="ELOKTOTO"
+  >
+
+
+  <meta
+    property="og:title"
+    content="Detail Permainan | ELOKTOTO"
+  >
+
+
+  <meta
+    property="og:description"
+    content="Detail permainan ELOKTOTO dalam tampilan modern yang keren"
+  >
+
+
+  <meta
+    property="og:image"
+    content="https://toko-elok.pages.dev/assets/images/eloktoto.webp"
+  >
+
+
 </head>
+
+
 <body>
 
 
-<div class="announcement">ELOKTOTO · Tampilan modern, cepat, dan mobile friendly</div>
 
-<header class="site-header" data-site-header>
+<!-- =====================================================
+     ANNOUNCEMENT
+===================================================== -->
+
+<div class="announcement">
+
+  ELOKTOTO · Tampilan modern, cepat, dan mobile friendly
+
+</div>
+
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header
+  class="site-header"
+  data-site-header
+>
+
+
   <div class="container header-main">
-    <a class="logo" href="/" aria-label="ELOKTOTO Beranda">
-      <span class="logo-mark">E</span>
-      <span>ELOKTOTO</span>
+
+
+
+    <!-- LOGO -->
+
+    <a
+      class="logo"
+      href="/"
+      aria-label="ELOKTOTO Beranda"
+    >
+
+      <span class="logo-mark">
+        E
+      </span>
+
+      <span>
+        ELOKTOTO
+      </span>
+
     </a>
 
-    <form class="searchbar" action="/katalog/" method="get" role="search">
-      <label class="sr-only" for="site-search">Cari</label>
-      <input id="site-search" name="q" type="search" placeholder="Cari permainan, promo, RTP...">
-      <button type="submit">Cari</button>
+
+
+    <!-- SEARCH -->
+
+    <form
+      class="searchbar"
+      action="/katalog/"
+      method="get"
+      role="search"
+    >
+
+
+      <label
+        class="sr-only"
+        for="site-search"
+      >
+        Cari
+      </label>
+
+
+      <input
+        id="site-search"
+        name="q"
+        type="search"
+        placeholder="Cari permainan, promo, RTP..."
+      >
+
+
+      <button type="submit">
+        Cari
+      </button>
+
+
     </form>
 
+
+
+    <!-- HEADER ACTIONS -->
+
     <div class="header-actions">
-      <a class="header-link" href="/katalog/?category=BUKTI%20KEMENANGAN">BUKTI KEMENANGAN</a>
-      <a class="header-link primary" data-elok-link href="https://fourdi.link/ELOK">DAFTAR</a>
+
+
+      <a
+        class="header-link"
+        href="/katalog/?category=BUKTI%20KEMENANGAN"
+      >
+        BUKTI KEMENANGAN
+      </a>
+
+
+      <a
+        class="header-link primary"
+        data-elok-link
+        href="https://fourdi.link/ELOK"
+      >
+        DAFTAR
+      </a>
+
+
     </div>
 
-    <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Buka menu">☰</button>
+
+
+    <!-- MOBILE MENU -->
+
+    <button
+      class="menu-toggle"
+      data-menu-toggle
+      aria-expanded="false"
+      aria-label="Buka menu"
+    >
+      ☰
+    </button>
+
+
   </div>
 
+
+
+  <!-- ==================================================
+       NAVIGATION
+  =================================================== -->
+
   <nav class="nav">
-    <div class="container nav-inner" data-mobile-nav>
-      <a href="/">BERANDA</a>
-      <a href="/katalog/">SEMUA PERMAINAN</a>
-      <a href="/katalog/?category=BUKTI%20KEMENANGAN">BUKTI KEMENANGAN</a>
-      <a href="/katalog/?category=PROMO">PROMO</a>
-      <a href="/katalog/?category=RTP">RTP</a>
-      <a href="/katalog/?category=GAME%20GACOR">GAME GACOR</a>
+
+
+    <div
+      class="container nav-inner"
+      data-mobile-nav
+    >
+
+
+      <a href="/">
+        BERANDA
+      </a>
+
+
+      <a href="/katalog/">
+        SEMUA PERMAINAN
+      </a>
+
+
+      <a
+        href="/katalog/?category=BUKTI%20KEMENANGAN"
+      >
+        BUKTI KEMENANGAN
+      </a>
+
+
+      <a
+        href="/katalog/?category=PROMO"
+      >
+        PROMO
+      </a>
+
+
+      <a
+        href="/katalog/?category=RTP"
+      >
+        RTP
+      </a>
+
+
+      <a
+        href="/katalog/?category=GAME%20GACOR"
+      >
+        GAME GACOR
+      </a>
+
+
     </div>
+
+
   </nav>
+
+
 </header>
 
 
+
+<!-- =====================================================
+     DETAIL PERMAINAN
+===================================================== -->
+
 <main class="detail-page">
-  <div class="container" data-product-detail></div>
+
+
+  <div
+    class="container"
+    data-product-detail
+  ></div>
+
+
 </main>
 
 
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <footer class="footer">
+
+
   <div class="container">
+
+
+
     <div class="footer-grid">
-      <div>
-        <h3>ELOKTOTO</h3>
-        <p>Portal dengan banyak pilihan untuk permainan, promo, RTP, dan keseruan tanpa batas</p>
-      </div>
+
+
+
+      <!-- BRAND -->
 
       <div>
-        <h3>Navigasi</h3>
-        <p><a href="/">Beranda</a></p>
-        <p><a href="/katalog/">Semua Permainan</a></p>
-        <p><a href="/katalog/?category=PROMO">Promo</a></p>
-        <p><a href="/katalog/?category=RTP">RTP</a></p>
+
+
+        <h3>
+          ELOKTOTO
+        </h3>
+
+
+        <p>
+          Portal dengan banyak pilihan untuk permainan,
+          promo, RTP, dan keseruan tanpa batas
+        </p>
+
+
       </div>
 
+
+
+      <!-- NAVIGATION -->
+
       <div>
-        <h3>ELOKTOTO</h3>
-        <p><a data-elok-link href="https://fourdi.link/ELOK">Kunjungi ELOKTOTO</a></p>
-        <p><a data-elok-link href="https://fourdi.link/ELOK">Daftar ELOKTOTO</a></p>
+
+
+        <h3>
+          Navigasi
+        </h3>
+
+
+        <p>
+
+          <a href="/">
+            Beranda
+          </a>
+
+        </p>
+
+
+        <p>
+
+          <a href="/katalog/">
+            Semua Permainan
+          </a>
+
+        </p>
+
+
+        <p>
+
+          <a
+            href="/katalog/?category=PROMO"
+          >
+            Promo
+          </a>
+
+        </p>
+
+
+        <p>
+
+          <a
+            href="/katalog/?category=RTP"
+          >
+            RTP
+          </a>
+
+        </p>
+
+
       </div>
+
+
+
+      <!-- ELOKTOTO -->
+
+      <div>
+
+
+        <h3>
+          ELOKTOTO
+        </h3>
+
+
+        <p>
+
+          <a
+            data-elok-link
+            href="https://fourdi.link/ELOK"
+          >
+            Kunjungi ELOKTOTO
+          </a>
+
+        </p>
+
+
+        <p>
+
+          <a
+            data-elok-link
+            href="https://fourdi.link/ELOK"
+          >
+            Daftar ELOKTOTO
+          </a>
+
+        </p>
+
+
+      </div>
+
+
     </div>
+
+
+
+    <!-- COPYRIGHT -->
 
     <div class="footer-bottom">
-      © <span data-year></span> ELOKTOTO. All rights reserved.
+
+      ©
+      <span data-year></span>
+      ELOKTOTO.
+      All rights reserved.
+
     </div>
+
+
   </div>
+
+
 </footer>
 
 
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script src="/assets/js/products.js"></script>
+
 <script src="/assets/js/app.js"></script>
+
 <script src="/assets/js/product.js"></script>
+
+
 </body>
+
 </html>
+```
