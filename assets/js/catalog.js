@@ -1,314 +1,115 @@
-```javascript
 (() => {
+  const store = window.TOKOELOK;
 
-  /*
-  =========================================================
-  AMBIL DATA GLOBAL
-  =========================================================
-  */
-
-  const tokoData = window.TOKOELOK || {};
-
-  const products =
-    Array.isArray(tokoData.products)
-      ? tokoData.products
-      : [];
-
-  const formatPrice =
-    typeof tokoData.formatPrice === "function"
-      ? tokoData.formatPrice
-      : (value) => value;
-
-
-  /*
-  =========================================================
-  ELEMENT HTML
-  =========================================================
-  */
-
-  const grid =
-    document.querySelector(
-      "[data-product-grid]"
+  if (!store) {
+    console.error(
+      "ELOKTOTO: window.TOKOELOK belum tersedia. " +
+      "Pastikan products.js dimuat sebelum app.js dan catalog.js."
     );
+    return;
+  }
 
-  const search =
-    document.querySelector(
-      "[data-search]"
-    );
+  const products = Array.isArray(store.products)
+    ? store.products
+    : [];
 
-  const category =
-    document.querySelector(
-      "[data-category]"
-    );
-
-  const resultCount =
-    document.querySelector(
-      "[data-result-count]"
-    );
-
-
-  /*
-  =========================================================
-  JIKA TIDAK ADA PRODUCT GRID
-  =========================================================
-  */
+  const grid = document.querySelector("[data-product-grid]");
+  const search = document.querySelector("[data-search]");
+  const category = document.querySelector("[data-category]");
+  const resultCount = document.querySelector("[data-result-count]");
 
   if (!grid) {
     return;
   }
 
+  const escapeHtml = (value) => {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  };
 
-  /*
-  =========================================================
-  PARAMETER URL
-  =========================================================
+  const detailUrl = (product) => {
+    return `/produk/?slug=${encodeURIComponent(product.slug || "")}`;
+  };
 
-  Contoh:
+  const params = new URLSearchParams(window.location.search);
+  const urlSearch = params.get("q") || "";
+  const urlCategory = params.get("category") || "";
 
-  /katalog/?category=PROMO
-
-  /katalog/?category=GAME%20GACOR
-
-  /katalog/?q=pragmatic
-
-  =========================================================
-  */
-
-  const params =
-    new URLSearchParams(
-      window.location.search
-    );
-
-  const urlSearch =
-    params.get("q") || "";
-
-  const urlCategory =
-    params.get("category") || "";
-
-
-  /*
-  =========================================================
-  ISI SEARCH DARI URL
-  =========================================================
-  */
-
-  if (
-    search &&
-    urlSearch
-  ) {
-
-    search.value =
-      urlSearch;
-
+  if (search && urlSearch) {
+    search.value = urlSearch;
   }
 
-
-  /*
-  =========================================================
-  KATEGORI UTAMA ELOKTOTO
-  =========================================================
-  */
-
-  const mainCategories = [
-
+  const preferredCategories = [
     "BUKTI KEMENANGAN",
-
     "PROMO",
-
     "RTP",
-
     "GAME GACOR"
-
   ];
 
-
-  /*
-  =========================================================
-  AMBIL KATEGORI TAMBAHAN DARI PRODUCTS.JS
-  =========================================================
-  */
-
-  const productCategories =
-    products
-      .map((p) => p.category)
-      .filter(Boolean);
-
-
-  /*
-  =========================================================
-  GABUNGKAN KATEGORI
-  =========================================================
-  */
+  const dataCategories = products
+    .map((p) => p.category)
+    .filter(Boolean);
 
   const categories = [
-
     "Semua",
-
     ...new Set([
-      ...mainCategories,
-      ...productCategories
+      ...preferredCategories,
+      ...dataCategories
     ])
-
   ];
 
-
-  /*
-  =========================================================
-  BUAT SELECT CATEGORY
-  =========================================================
-  */
-
   if (category) {
+    category.innerHTML = categories
+      .map((name) => {
+        return `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`;
+      })
+      .join("");
 
-    category.innerHTML =
-      categories
-        .map((c) => {
-
-          return `
-            <option value="${escapeHtml(c)}">
-              ${escapeHtml(c)}
-            </option>
-          `;
-
-        })
-        .join("");
-
-
-    /*
-    =======================================================
-    PILIH CATEGORY DARI URL
-    =======================================================
-    */
-
-    if (
-      urlCategory &&
-      categories.includes(
-        urlCategory
-      )
-    ) {
-
-      category.value =
-        urlCategory;
-
+    if (urlCategory && categories.includes(urlCategory)) {
+      category.value = urlCategory;
     }
-
   }
-
-
-  /*
-  =========================================================
-  ESCAPE HTML
-  =========================================================
-
-  Mengurangi risiko teks produk merusak HTML.
-
-  =========================================================
-  */
-
-  function escapeHtml(value) {
-
-    return String(
-      value ?? ""
-    )
-      .replace(
-        /&/g,
-        "&amp;"
-      )
-      .replace(
-        /</g,
-        "&lt;"
-      )
-      .replace(
-        />/g,
-        "&gt;"
-      )
-      .replace(
-        /"/g,
-        "&quot;"
-      )
-      .replace(
-        /'/g,
-        "&#039;"
-      );
-
-  }
-
-
-  /*
-  =========================================================
-  URL DETAIL PERMAINAN
-  =========================================================
-  */
-
-  function productUrl(p) {
-
-    return (
-      "/produk/?slug=" +
-      encodeURIComponent(
-        p.slug || ""
-      )
-    );
-
-  }
-
-
-  /*
-  =========================================================
-  CARD PERMAINAN
-  =========================================================
-  */
 
   function card(p) {
+    const name = escapeHtml(
+      p.name || "Permainan ELOKTOTO"
+    );
 
-    const name =
-      escapeHtml(
-        p.name ||
-        "Permainan ELOKTOTO"
-      );
+    const categoryName = escapeHtml(
+      p.category || "GAME GACOR"
+    );
 
-    const categoryName =
-      escapeHtml(
-        p.category ||
-        "GAME GACOR"
-      );
+    const provider = escapeHtml(
+      p.provider ||
+      p.brand ||
+      "ELOKTOTO"
+    );
 
-    const brand =
-      escapeHtml(
-        p.brand ||
-        p.provider ||
-        "ELOKTOTO"
-      );
+    const image = escapeHtml(
+      p.image ||
+      "/assets/images/og-tokoelok.png"
+    );
 
-    const image =
-      escapeHtml(
-        p.image ||
-        "/assets/images/og-tokoelok.png"
-      );
+    const description = escapeHtml(
+      p.shortDescription ||
+      p.description ||
+      "Permainan pilihan ELOKTOTO."
+    );
 
-    const description =
-      escapeHtml(
-        p.shortDescription ||
-        p.description ||
-        "Permainan pilihan ELOKTOTO."
-      );
-
-    const url =
-      productUrl(p);
-
+    const url = detailUrl(p);
 
     return `
-
       <article class="product-card">
-
-
-        <!-- IMAGE -->
 
         <a
           class="product-image-link"
           href="${url}"
           aria-label="Lihat ${name}"
         >
-
           <img
             class="product-image"
             src="${image}"
@@ -321,53 +122,23 @@
           <span class="discount-badge">
             ${categoryName}
           </span>
-
         </a>
-
-
-
-        <!-- CONTENT -->
 
         <div class="product-content">
 
-
-          <!-- CATEGORY / PROVIDER -->
-
           <div class="product-meta">
-
-            ${categoryName}
-
-            ·
-
-            ${brand}
-
+            ${categoryName} · ${provider}
           </div>
 
-
-
-          <!-- TITLE -->
-
           <h3>
-
             <a href="${url}">
               ${name}
             </a>
-
           </h3>
 
-
-
-          <!-- DESCRIPTION -->
-
           <p class="product-description">
-
             ${description}
-
           </p>
-
-
-
-          <!-- DETAIL BUTTON -->
 
           <a
             class="product-button"
@@ -376,251 +147,77 @@
             LIHAT DETAIL
           </a>
 
-
         </div>
 
-
       </article>
-
     `;
-
   }
 
-
-  /*
-  =========================================================
-  FILTER & RENDER
-  =========================================================
-  */
-
   function render() {
-
-
-    /*
-    =======================================================
-    SEARCH KEYWORD
-    =======================================================
-    */
-
     const q = (
-
       search?.value ||
       urlSearch ||
       ""
-
     )
       .trim()
       .toLowerCase();
 
-
-    /*
-    =======================================================
-    CATEGORY AKTIF
-    =======================================================
-    */
-
     const selectedCategory =
-
       category?.value ||
-
       urlCategory ||
-
       "Semua";
 
+    let filtered = products.filter((p) => {
+      const searchableText = [
+        p.name,
+        p.provider,
+        p.brand,
+        p.category,
+        p.shortDescription,
+        p.description
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
 
-    /*
-    =======================================================
-    FILTER DATA
-    =======================================================
-    */
+      const searchMatch =
+        !q ||
+        searchableText.includes(q);
 
-    let filtered =
-      products.filter(
-        (p) => {
+      const categoryMatch =
+        selectedCategory === "Semua" ||
+        p.category === selectedCategory;
 
-          const name =
-            p.name || "";
-
-          const brand =
-            p.brand ||
-            p.provider ||
-            "";
-
-          const productCategory =
-            p.category || "";
-
-          const description =
-            p.shortDescription ||
-            p.description ||
-            "";
-
-
-          const searchText = `
-
-            ${name}
-
-            ${brand}
-
-            ${productCategory}
-
-            ${description}
-
-          `
-            .toLowerCase();
-
-
-          /*
-          SEARCH MATCH
-          */
-
-          const searchMatch =
-
-            !q ||
-
-            searchText.includes(q);
-
-
-          /*
-          CATEGORY MATCH
-          */
-
-          const categoryMatch =
-
-            selectedCategory ===
-              "Semua" ||
-
-            productCategory ===
-              selectedCategory;
-
-
-          return (
-
-            searchMatch &&
-            categoryMatch
-
-          );
-
-        }
-      );
-
-
-    /*
-    =======================================================
-    HOMEPAGE HANYA TAMPILKAN 8 PERMAINAN
-    =======================================================
-
-    Pada /katalog/ semua permainan tetap tampil.
-
-    =======================================================
-    */
+      return searchMatch && categoryMatch;
+    });
 
     const isCatalogPage =
-      window.location.pathname
-        .startsWith(
-          "/katalog"
-        );
-
+      window.location.pathname.startsWith("/katalog");
 
     if (!isCatalogPage) {
-
-      filtered =
-        filtered.slice(
-          0,
-          8
-        );
-
+      filtered = filtered.slice(0, 8);
     }
 
-
-    /*
-    =======================================================
-    TAMPILKAN CARD
-    =======================================================
-    */
-
-    grid.innerHTML =
-      filtered
-        .map(card)
-        .join("");
-
-
-    /*
-    =======================================================
-    JUMLAH HASIL
-    =======================================================
-    */
+    grid.innerHTML = filtered
+      .map(card)
+      .join("");
 
     if (resultCount) {
-
       resultCount.textContent =
-
         `${filtered.length} permainan ditemukan`;
-
     }
 
-
-    /*
-    =======================================================
-    JIKA KOSONG
-    =======================================================
-    */
-
-    if (
-      filtered.length === 0
-    ) {
-
+    if (!filtered.length) {
       grid.innerHTML = `
-
         <div class="empty">
-
           Permainan tidak ditemukan.
-
-          <br>
-
-          Silakan pilih kategori
-          atau gunakan kata pencarian lain.
-
         </div>
-
       `;
-
     }
-
   }
 
-
-  /*
-  =========================================================
-  EVENT SEARCH
-  =========================================================
-  */
-
-  search?.addEventListener(
-    "input",
-    render
-  );
-
-
-  /*
-  =========================================================
-  EVENT CATEGORY
-  =========================================================
-  */
-
-  category?.addEventListener(
-    "change",
-    render
-  );
-
-
-  /*
-  =========================================================
-  RENDER PERTAMA
-  =========================================================
-  */
+  search?.addEventListener("input", render);
+  category?.addEventListener("change", render);
 
   render();
-
-
 })();
-```
