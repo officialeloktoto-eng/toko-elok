@@ -1,169 +1,55 @@
 (() => {
+  const config = window.TOKOELOK_CONFIG || {};
+  const products = Array.isArray(window.TOKOELOK_PRODUCTS)
+    ? window.TOKOELOK_PRODUCTS
+    : [];
 
-  /*
-  =========================================================
-  CONFIG & DATA
-  =========================================================
-  */
-
-  const config =
-    window.TOKOELOK_CONFIG || {};
-
-  const products =
-    window.TOKOELOK_PRODUCTS || [];
-
-
-  /*
-  =========================================================
-  LINK TUJUAN UTAMA ELOKTOTO
-  =========================================================
-  */
-
-  const eloktotoLink =
+  const targetLink =
+    config.targetLink ||
     "https://fourdi.link/ELOK";
 
-
-  /*
-  =========================================================
-  FORMAT HARGA
-  =========================================================
-  */
-
   const formatPrice = (value) => {
+    const number = Number(value);
 
-    return new Intl.NumberFormat(
-      "id-ID",
-      {
-        style: "currency",
-        currency:
-          config.currency || "IDR",
+    if (!Number.isFinite(number)) {
+      return "";
+    }
 
-        maximumFractionDigits: 0
-      }
-    ).format(value);
-
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: config.currency || "IDR",
+      maximumFractionDigits: 0
+    }).format(number);
   };
-
-
-  /*
-  =========================================================
-  GLOBAL DATA
-  =========================================================
-  */
 
   window.TOKOELOK = {
-
     config,
-
     products,
-
     formatPrice,
-
-    eloktotoLink
-
+    targetLink
   };
 
+  document.querySelectorAll("[data-year]").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
 
-  /*
-  =========================================================
-  COPYRIGHT YEAR
-  =========================================================
-  */
+  const menuBtn = document.querySelector("[data-menu-toggle]");
+  const mobileNav = document.querySelector("[data-mobile-nav]");
 
-  document
-    .querySelectorAll(
-      "[data-year]"
-    )
-    .forEach((el) => {
+  if (menuBtn && mobileNav) {
+    menuBtn.addEventListener("click", () => {
+      const isOpen = mobileNav.classList.toggle("open");
 
-      el.textContent =
-        new Date().getFullYear();
-
+      menuBtn.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
+      );
     });
-
-
-  /*
-  =========================================================
-  MOBILE MENU
-  =========================================================
-  */
-
-  const menuBtn =
-    document.querySelector(
-      "[data-menu-toggle]"
-    );
-
-
-  const mobileNav =
-    document.querySelector(
-      "[data-mobile-nav]"
-    );
-
-
-  if (
-    menuBtn &&
-    mobileNav
-  ) {
-
-    menuBtn.addEventListener(
-      "click",
-      () => {
-
-        mobileNav.classList.toggle(
-          "open"
-        );
-
-
-        menuBtn.setAttribute(
-          "aria-expanded",
-
-          mobileNav.classList.contains(
-            "open"
-          )
-            ? "true"
-            : "false"
-        );
-
-      }
-    );
-
   }
 
-
-  /*
-  =========================================================
-  LINK ELOKTOTO
-  =========================================================
-
-  Semua elemen yang masih menggunakan:
-
-  data-wa-general
-
-  sekarang otomatis diarahkan ke:
-
-  https://fourdi.link/ELOK
-
-  =========================================================
-  */
-
-  document
-    .querySelectorAll(
-      "[data-wa-general]"
-    )
-    .forEach((link) => {
-
-      link.href =
-        eloktotoLink;
-
-
-      link.target =
-        "_blank";
-
-
-      link.rel =
-        "nofollow noopener";
-
-    });
-
-
+  document.querySelectorAll("[data-wa-general]").forEach((link) => {
+    link.href = targetLink;
+    link.target = "_blank";
+    link.rel = "nofollow noopener";
+  });
 })();
