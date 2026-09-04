@@ -1,105 +1,54 @@
 (() => {
+  const store = window.TOKOELOK;
 
-  /*
-  =========================================================
-  AMBIL DATA GLOBAL
-  =========================================================
-  */
-
-  const tokoData =
-    window.TOKOELOK || {};
-
-  const products =
-    Array.isArray(tokoData.products)
-      ? tokoData.products
-      : [];
-
-  const target =
-    document.querySelector(
-      "[data-product-detail]"
+  if (!store) {
+    console.error(
+      "ELOKTOTO: window.TOKOELOK belum tersedia. " +
+      "Pastikan products.js dimuat sebelum app.js dan product.js."
     );
+    return;
+  }
 
+  const products = Array.isArray(store.products)
+    ? store.products
+    : [];
 
-  /*
-  =========================================================
-  LINK TUJUAN ELOKTOTO
-  =========================================================
-  */
-
-  const eloktotoLink =
-    "https://fourdi.link/ELOK";
-
-
-  /*
-  =========================================================
-  JIKA CONTAINER DETAIL TIDAK ADA
-  =========================================================
-  */
+  const target = document.querySelector("[data-product-detail]");
 
   if (!target) {
     return;
   }
 
+  const targetLink =
+    store.targetLink ||
+    store.config?.targetLink ||
+    "https://fourdi.link/ELOK";
 
-  /*
-  =========================================================
-  AMBIL SLUG DARI URL
-  =========================================================
-
-  Contoh:
-
-  /produk/?slug=nama-game
-
-  =========================================================
-  */
+  const escapeHtml = (value) => {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  };
 
   const params =
-    new URLSearchParams(
-      window.location.search
-    );
+    new URLSearchParams(window.location.search);
 
   const slug =
-    params.get("slug");
-
-
-  /*
-  =========================================================
-  CARI PERMAINAN
-  =========================================================
-  */
+    params.get("slug") ||
+    products[0]?.slug;
 
   const p =
-
-    products.find(
-      (item) =>
-        item.slug === slug
-    )
-
-    ||
-
+    products.find((item) => item.slug === slug) ||
     products[0];
 
-
-  /*
-  =========================================================
-  JIKA PERMAINAN TIDAK DITEMUKAN
-  =========================================================
-  */
-
   if (!p) {
-
     target.innerHTML = `
-
       <section class="detail-section">
-
-        <h1>
-          Permainan tidak ditemukan
-        </h1>
-
-        <p>
-          Permainan yang Anda cari
-          belum tersedia.
-        </p>
+        <h1>Permainan tidak ditemukan</h1>
+        <p>Permainan yang Anda cari belum tersedia.</p>
 
         <a
           class="btn btn-primary"
@@ -107,247 +56,99 @@
         >
           LIHAT SEMUA PERMAINAN
         </a>
-
       </section>
-
     `;
 
     return;
-
   }
 
+  const name = escapeHtml(
+    p.name || "Permainan ELOKTOTO"
+  );
 
-  /*
-  =========================================================
-  ESCAPE HTML
-  =========================================================
-  */
+  const category = escapeHtml(
+    p.category || "GAME GACOR"
+  );
 
-  function escapeHtml(value) {
+  const provider = escapeHtml(
+    p.provider ||
+    p.brand ||
+    "ELOKTOTO"
+  );
 
-    return String(
-      value ?? ""
-    )
+  const image = escapeHtml(
+    p.image ||
+    "/assets/images/og-tokoelok.png"
+  );
 
-      .replace(
-        /&/g,
-        "&amp;"
-      )
+  const shortDescription = escapeHtml(
+    p.shortDescription ||
+    "Permainan pilihan ELOKTOTO."
+  );
 
-      .replace(
-        /</g,
-        "&lt;"
-      )
+  const description = escapeHtml(
+    p.description ||
+    p.shortDescription ||
+    "Informasi permainan pilihan ELOKTOTO."
+  );
 
-      .replace(
-        />/g,
-        "&gt;"
-      )
-
-      .replace(
-        /"/g,
-        "&quot;"
-      )
-
-      .replace(
-        /'/g,
-        "&#039;"
-      );
-
-  }
-
-
-  /*
-  =========================================================
-  DATA PERMAINAN
-  =========================================================
-  */
-
-  const name =
-    escapeHtml(
-      p.name ||
-      "Permainan ELOKTOTO"
-    );
-
-
-  const category =
-    escapeHtml(
-      p.category ||
-      "GAME GACOR"
-    );
-
-
-  const provider =
-    escapeHtml(
-      p.provider ||
-      p.brand ||
-      "ELOKTOTO"
-    );
-
-
-  const image =
-    escapeHtml(
-      p.image ||
-      "/assets/images/og-tokoelok.png"
-    );
-
-
-  const shortDescription =
-    escapeHtml(
-      p.shortDescription ||
-      "Permainan pilihan ELOKTOTO."
-    );
-
-
-  const description =
-    escapeHtml(
-      p.description ||
-      p.shortDescription ||
-      "Informasi permainan pilihan ELOKTOTO."
-    );
-
-
-  /*
-  =========================================================
-  UPDATE TITLE
-  =========================================================
-  */
+  const information =
+    Array.isArray(p.info)
+      ? p.info
+      : Array.isArray(p.specs)
+      ? p.specs
+      : [];
 
   document.title =
-    `${name} | ELOKTOTO`;
-
-
-  /*
-  =========================================================
-  UPDATE META DESCRIPTION
-  =========================================================
-  */
+    `${p.name || "Detail Permainan"} | ELOKTOTO`;
 
   const metaDescription =
-    document.querySelector(
-      'meta[name="description"]'
-    );
-
+    document.querySelector('meta[name="description"]');
 
   if (metaDescription) {
-
     metaDescription.setAttribute(
       "content",
-      shortDescription
+      p.shortDescription ||
+      "Lihat detail permainan ELOKTOTO."
     );
-
   }
-
-
-  /*
-  =========================================================
-  UPDATE OPEN GRAPH TITLE
-  =========================================================
-  */
 
   const ogTitle =
-    document.querySelector(
-      'meta[property="og:title"]'
-    );
-
+    document.querySelector('meta[property="og:title"]');
 
   if (ogTitle) {
-
     ogTitle.setAttribute(
       "content",
-      `${name} | ELOKTOTO`
+      `${p.name || "Detail Permainan"} | ELOKTOTO`
     );
-
   }
-
-
-  /*
-  =========================================================
-  UPDATE OPEN GRAPH DESCRIPTION
-  =========================================================
-  */
 
   const ogDescription =
     document.querySelector(
       'meta[property="og:description"]'
     );
 
-
   if (ogDescription) {
-
     ogDescription.setAttribute(
       "content",
-      shortDescription
+      p.shortDescription ||
+      "Lihat detail permainan ELOKTOTO."
     );
-
   }
-
-
-  /*
-  =========================================================
-  UPDATE OPEN GRAPH IMAGE
-  =========================================================
-  */
 
   const ogImage =
     document.querySelector(
       'meta[property="og:image"]'
     );
 
-
   if (ogImage && p.image) {
-
     ogImage.setAttribute(
       "content",
       p.image
     );
-
   }
 
-
-  /*
-  =========================================================
-  DATA INFORMASI
-  =========================================================
-
-  Bisa menggunakan salah satu:
-
-  info: []
-
-  atau:
-
-  specs: []
-
-  =========================================================
-  */
-
-  const information =
-
-    Array.isArray(p.info)
-      ? p.info
-
-      :
-
-    Array.isArray(p.specs)
-      ? p.specs
-
-      :
-
-    [];
-
-
-  /*
-  =========================================================
-  TAMPILKAN DETAIL
-  =========================================================
-  */
-
   target.innerHTML = `
-
-
-    <!-- ================================================= -->
-    <!-- BREADCRUMB -->
-    <!-- ================================================= -->
 
     <nav
       class="breadcrumb"
@@ -358,17 +159,13 @@
         Beranda
       </a>
 
-      <span>
-        /
-      </span>
+      <span>/</span>
 
       <a href="/katalog/">
         Permainan
       </a>
 
-      <span>
-        /
-      </span>
+      <span>/</span>
 
       <a
         href="/katalog/?category=${encodeURIComponent(
@@ -378,9 +175,7 @@
         ${category}
       </a>
 
-      <span>
-        /
-      </span>
+      <span>/</span>
 
       <span>
         ${name}
@@ -389,15 +184,7 @@
     </nav>
 
 
-
-    <!-- ================================================= -->
-    <!-- DETAIL GAME -->
-    <!-- ================================================= -->
-
     <section class="detail-grid">
-
-
-      <!-- GAMBAR -->
 
       <div class="detail-media">
 
@@ -411,175 +198,105 @@
       </div>
 
 
-
-      <!-- INFO -->
-
       <div class="detail-info">
 
-
         <p class="eyebrow">
-
-          ${category}
-
-          ·
-
-          ${provider}
-
+          ${category} · ${provider}
         </p>
-
 
         <h1>
           ${name}
         </h1>
 
-
         <p class="detail-summary">
-
           ${shortDescription}
-
         </p>
-
-
-
-        <!-- TOMBOL UTAMA -->
 
         <a
           class="btn btn-primary btn-wide"
-          href="${eloktotoLink}"
+          href="${targetLink}"
           target="_blank"
           rel="nofollow noopener"
         >
           KUNJUNGI ELOKTOTO
         </a>
 
-
       </div>
-
 
     </section>
 
 
-
-    <!-- ================================================= -->
-    <!-- DESKRIPSI -->
-    <!-- ================================================= -->
-
     <section class="detail-section">
-
 
       <h2>
         Tentang ${name}
       </h2>
 
-
       <p>
         ${description}
       </p>
 
-
     </section>
-
 
 
     ${
       information.length
+        ? `
+          <section class="detail-section">
 
-      ?
+            <h2>
+              Informasi Permainan
+            </h2>
 
-      `
+            <ul class="spec-list">
 
-      <!-- =============================================== -->
-      <!-- INFORMASI -->
-      <!-- =============================================== -->
+              ${information
+                .map(
+                  (item) =>
+                    `<li>${escapeHtml(item)}</li>`
+                )
+                .join("")}
 
-      <section class="detail-section">
+            </ul>
 
-
-        <h2>
-          Informasi Permainan
-        </h2>
-
-
-        <ul class="spec-list">
-
-          ${information
-            .map(
-              (item) => `
-
-                <li>
-                  ${escapeHtml(item)}
-                </li>
-
-              `
-            )
-            .join("")
-          }
-
-        </ul>
-
-
-      </section>
-
-      `
-
-      :
-
-      ""
-
+          </section>
+        `
+        : ""
     }
 
 
-
-    <!-- ================================================= -->
-    <!-- CTA BAWAH -->
-    <!-- ================================================= -->
-
     <section class="detail-section">
-
 
       <div class="info-band">
 
-
         <div>
-
 
           <p class="eyebrow">
             ELOKTOTO
           </p>
 
-
           <h2>
-            Mainkan ${name}
+            Kunjungi ELOKTOTO
           </h2>
 
-
           <p>
-            Kunjungi ELOKTOTO untuk
-            melihat informasi permainan
-            dan pilihan terbaru.
+            Lihat permainan, promo,
+            RTP, dan informasi terbaru.
           </p>
-
 
         </div>
 
-
         <a
           class="btn btn-primary"
-          href="${eloktotoLink}"
+          href="${targetLink}"
           target="_blank"
           rel="nofollow noopener"
         >
-          MAIN SEKARANG
+          KUNJUNGI ELOKTOTO
         </a>
-
 
       </div>
 
-
     </section>
-
-
   `;
-
-
 })();
