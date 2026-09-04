@@ -134,27 +134,39 @@ select {
   gap: 22px;
 }
 
+/* ======================================================
+   LOGO IMAGE
+====================================================== */
+
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 25px;
-  font-weight: 950;
-  letter-spacing: -.04em;
+  flex-shrink: 0;
+  line-height: 0;
 }
 
-.logo-mark {
-  width: 38px;
-  aspect-ratio: 1;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  color: #321500;
-  background: linear-gradient(145deg, #ffd28a 0%, #ff7a00 45%, #e6251f 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.78),
-    0 0 34px rgba(255,88,24,.34),
-    0 0 52px rgba(230,37,31,.14);
+.logo-image {
+  display: block;
+  width: auto;
+  height: 48px;
+  max-width: 220px;
+  object-fit: contain;
+  object-position: left center;
+  transition:
+    transform 0.25s ease,
+    filter 0.25s ease;
+  filter:
+    drop-shadow(0 0 12px rgba(255, 122, 0, 0.18))
+    drop-shadow(0 0 22px rgba(230, 37, 31, 0.11));
+}
+
+.logo:hover .logo-image {
+  transform: scale(1.03);
+  filter:
+    brightness(1.08)
+    saturate(1.08)
+    drop-shadow(0 0 15px rgba(255, 122, 0, 0.26))
+    drop-shadow(0 0 28px rgba(230, 37, 31, 0.18));
 }
 
 .searchbar {
@@ -921,7 +933,6 @@ select {
    ORANGE + RED INTERACTION GLOW
 ====================================================== */
 
-.logo:hover .logo-mark,
 .header-link.primary:hover,
 .searchbar button:hover,
 .btn-primary:hover,
@@ -957,6 +968,11 @@ select {
 @media (max-width: 980px) {
   .header-main {
     grid-template-columns: auto 1fr auto;
+  }
+
+  .logo-image {
+    height: 44px;
+    max-width: 200px;
   }
 
   .searchbar {
@@ -1033,12 +1049,9 @@ select {
     gap: 12px;
   }
 
-  .logo {
-    font-size: 21px;
-  }
-
-  .logo-mark {
-    width: 34px;
+  .logo-image {
+    height: 40px;
+    max-width: 180px;
   }
 
   .hero {
@@ -1122,5 +1135,12 @@ select {
 
   .content-card {
     padding: 22px;
+  }
+}
+
+@media (max-width: 420px) {
+  .logo-image {
+    height: 36px;
+    max-width: 150px;
   }
 }
