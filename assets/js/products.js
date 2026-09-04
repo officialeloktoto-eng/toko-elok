@@ -16,6 +16,9 @@ window.TOKOELOK_PRODUCTS = [
     description: "Mobile The GREAT ICESCAPE adalah model baru dari permainan yang seru dan menyenangkan,coba cek sekarang jangan sampai ketinggalan .",
     info: [
       "Kategori: GAME GACOR",
+   "Provider: ELOKTOTO",
+      "Tampilan responsif",
+      "Detail mudah diperbarui"
     ]
   },
   {
@@ -29,6 +32,9 @@ window.TOKOELOK_PRODUCTS = [
     description: "MOBILE STAR LIGHT WINS adalah jenis dan gaya baru dari permainan modern yang menyenangkan.",
     info: [
       "Kategori: GAME GACOR",
+     "Provider: ELOKTOTO",
+      "Gambar PNG",
+      "Siap tampil di mobile"
     ]
   },
   {
@@ -42,6 +48,9 @@ window.TOKOELOK_PRODUCTS = [
     description: "Tersedia banyak promo untuk harian dan mingguan di sertai dengan event event menarik lain nya, jangan lupa cek sekarang.",
     info: [
       "Kategori: PROMO",
+    "Konten mudah diganti",
+      "Tombol menuju ELOKTOTO",
+      "Desain glossy"
     ]
   },
   {
@@ -55,6 +64,9 @@ window.TOKOELOK_PRODUCTS = [
     description: "RTP pg Geisha Revenge dengan rtp terbaik untuk mendapatkan kemenangan yang melimpah.",
     info: [
       "Kategori: RTP",
+    "Informasi terstruktur",
+      "Desain mobile friendly",
+      "Navigasi cepat"
     ]
   },
   {
@@ -68,6 +80,11 @@ window.TOKOELOK_PRODUCTS = [
     description: "Sweet Candy Land menjadi live game yang menjanjikan, coba dan mainkan sekarang.",
     info: [
       "Kategori: BUKTI KEMENANGAN",
+      "Galeri informasi",
+      "Tampilan responsif",
+      "Mudah diperbarui"
+    ]
+    
   },
   {
     id: 6,
@@ -80,6 +97,10 @@ window.TOKOELOK_PRODUCTS = [
     description: "Permainan mobile live casino dengan penampilan yang ringan dan mudah di mainkan.",
     info: [
       "Kategori: GAME GACOR",
+      "Provider: ELOKTOTO",
+      "Dark glossy theme",
+      "Mobile ready"
     ]
+
   }
 ];
