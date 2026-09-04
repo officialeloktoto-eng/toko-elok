@@ -11,7 +11,7 @@ window.TOKOELOK_PRODUCTS = [
     name: "MOBILE THE GREAT ICESCAPE",
     category: "GAME GACOR",
     provider: "ELOKTOTO",
-    image: "/assets/images/products/pg1.png",
+    image: "/assets/images/products/pg1.jpg",
     shortDescription: "Mobile dengan tampilan yang cool dan menyenangkan.",
     description: "Mobile The GREAT ICESCAPE adalah model baru dari permainan yang seru dan menyenangkan,coba cek sekarang jangan sampai ketinggalan .",
     info: [
