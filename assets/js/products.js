@@ -7,12 +7,12 @@ window.TOKOELOK_CONFIG = {
 window.TOKOELOK_PRODUCTS = [
   {
     id: 1,
-    slug: "MOBILE-The-GREAT-ICESCAPE",
-    name: "MOBILE The GREAT ICESCAPE",
+    slug: "MOBILE-TEH-GREAT-ICESCAPE",
+    name: "MOBILE THE GREAT ICESCAPE",
     category: "GAME GACOR",
     provider: "ELOKTOTO",
     image: "/assets/images/products/pg1.png",
-    shortDescription: "Mobile dengan tampiran yang cool dan menyenangkan.",
+    shortDescription: "Mobile dengan tampilan yang cool dan menyenangkan.",
     description: "Mobile The GREAT ICESCAPE adalah model baru dari permainan yang seru dan menyenangkan,coba cek sekarang jangan sampai ketinggalan .",
     info: [
       "Kategori: GAME GACOR",
