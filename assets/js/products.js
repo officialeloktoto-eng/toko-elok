@@ -11,12 +11,12 @@ window.TOKOELOK_PRODUCTS = [
     name: "MOBILE THE GREAT ICESCAPE",
     category: "GAME GACOR",
     provider: "ELOKTOTO",
-    image: "/assets/images/products/pg1.jpg",
+    image: "/assets/images/products/pg1.webp",
     shortDescription: "Mobile dengan tampilan yang cool dan menyenangkan.",
     description: "Mobile The GREAT ICESCAPE adalah model baru dari permainan yang seru dan menyenangkan,coba cek sekarang jangan sampai ketinggalan .",
     info: [
       "Kategori: GAME GACOR",
-   "Provider: ELOKTOTO",
+      "Provider: ELOKTOTO",
       "Tampilan responsif",
       "Detail mudah diperbarui"
     ]
@@ -27,13 +27,13 @@ window.TOKOELOK_PRODUCTS = [
     name: "MOBILE STAR LIGHT WINS ",
     category: "GAME GACOR",
     provider: "ELOKTOTO",
-    image: "/assets/images/products/pragmatic1.png",
+    image: "/assets/images/products/pragmatic1.webp",
     shortDescription: "MOBILE STAR LIGHT WINS dengan gaya unik tampilan imut dan lucu.",
     description: "MOBILE STAR LIGHT WINS adalah jenis dan gaya baru dari permainan modern yang menyenangkan.",
     info: [
       "Kategori: GAME GACOR",
-     "Provider: ELOKTOTO",
-      "Gambar PNG",
+      "Provider: ELOKTOTO",
+      "Gambar WebP",
       "Siap tampil di mobile"
     ]
   },
@@ -43,12 +43,12 @@ window.TOKOELOK_PRODUCTS = [
     name: "Promo Elok",
     category: "PROMO",
     provider: "ELOKTOTO",
-    image: "/assets/images/products/promo-elok.png",
+    image: "/assets/images/products/promo-elok.webp",
     shortDescription: "Promo harian dan mingguan yang menarik dan banyak lagi promo lain nya.",
     description: "Tersedia banyak promo untuk harian dan mingguan di sertai dengan event event menarik lain nya, jangan lupa cek sekarang.",
     info: [
       "Kategori: PROMO",
-    "Konten mudah diganti",
+      "Konten mudah diganti",
       "Tombol menuju ELOKTOTO",
       "Desain glossy"
     ]
@@ -59,12 +59,12 @@ window.TOKOELOK_PRODUCTS = [
     name: "RTP Pg",
     category: "RTP",
     provider: "ELOKTOTO",
-    image: "/assets/images/products/rtp-pg.png",
+    image: "/assets/images/products/rtp-pg.webp",
     shortDescription: "Tampilan mobile dengan permainan dan rtp terbaik.",
     description: "RTP pg Geisha Revenge dengan rtp terbaik untuk mendapatkan kemenangan yang melimpah.",
     info: [
       "Kategori: RTP",
-    "Informasi terstruktur",
+      "Informasi terstruktur",
       "Desain mobile friendly",
       "Navigasi cepat"
     ]
@@ -75,7 +75,7 @@ window.TOKOELOK_PRODUCTS = [
     name: "Sweet Candy Land",
     category: "BUKTI KEMENANGAN",
     provider: "ELOKTOTO",
-    image: "/assets/images/products/sweet-candy-land.png",
+    image: "/assets/images/products/sweet-candy-land.webp",
     shortDescription: "Mobile dengan penampilan ringan yang cocok di mainkan untuk live games.",
     description: "Sweet Candy Land menjadi live game yang menjanjikan, coba dan mainkan sekarang.",
     info: [
@@ -84,7 +84,6 @@ window.TOKOELOK_PRODUCTS = [
       "Tampilan responsif",
       "Mudah diperbarui"
     ]
-    
   },
   {
     id: 6,
@@ -92,7 +91,7 @@ window.TOKOELOK_PRODUCTS = [
     name: "Live Casino",
     category: "GAME GACOR",
     provider: "ELOKTOTO",
-    image: "/assets/images/products/live-casino.png",
+    image: "/assets/images/products/live-casino.webp",
     shortDescription: "Pilihan permainan mobile yang menarik,live casino menjadi salah satu yang wajib di coba.",
     description: "Permainan mobile live casino dengan penampilan yang ringan dan mudah di mainkan.",
     info: [
@@ -101,6 +100,5 @@ window.TOKOELOK_PRODUCTS = [
       "Dark glossy theme",
       "Mobile ready"
     ]
-
   }
 ];
